@@ -34,35 +34,3 @@ async function generateImagesCard(image) {
 }
 
 getImages();
-
-let deferredPrompt;
-
-window.addEventListener('DOMContentLoaded', (event) => {
-    console.log(1);
-	event.preventDefault();
-	deferredPrompt = event;
-
-	const installButton = document.createElement("button");
-	installButton.innerText = "Установить приложение";
-	installButton.style.position = "fixed";
-	installButton.style.bottom = "20px";
-	installButton.style.right = "20px";
-	installButton.style.padding = "10px 20px";
-	installButton.style.background = "#000";
-	installButton.style.color = "#fff";
-	installButton.style.border = "none";
-	installButton.style.cursor = "pointer";
-
-	document.body.appendChild(installButton);
-
-	installButton.addEventListener("click", () => {
-		deferredPrompt.prompt();
-		deferredPrompt.userChoice.then((choiceResult) => {
-			if (choiceResult.outcome === "accepted") {
-				console.log("Пользователь установил приложение");
-			}
-			deferredPrompt = null;
-			installButton.remove();
-		});
-	});
-});
