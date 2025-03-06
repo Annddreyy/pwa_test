@@ -1,7 +1,0 @@
-{
-    "name": "Картины",
-    "description": "Информация о картинах чикагского университета",
-    "start_url": "/",
-    "lang": "ru",
-    "display": "standalone"
-}
