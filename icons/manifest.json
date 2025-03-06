@@ -1,6 +1,10 @@
 {
 	"name": "Картины",
-	"description": "Информация о картинах чикагского университета ",
+	"short_name": "Images",
+	"background_color": "#ffffff",
+	"theme_color": "#ff7f50",
+	"orientation": "portrait",
+	"description": "Информация о картинах чикагского университета",
 	"start_url": "/pwa_test/",
 	"lang": "ru",
 	"display": "standalone",
