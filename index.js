@@ -10,8 +10,8 @@ async function getImages() {
 
 async function generateImagesCard(image) {
     let data = image.data;
-    console.log(data.image_id);
-    let card = document.createElement('div');
+
+    let card = document.createElement('a');
     card.className = 'card';
     let image_link = 'https://www.artic.edu/iiif/2/' + data.image_id + '/full/843,/0/default.jpg';
     card.insertAdjacentHTML('afterbegin', `
@@ -19,6 +19,8 @@ async function generateImagesCard(image) {
         <p class="title">${data.title}</p>
         <p class="description">${data.short_description ?? 'Нет описания'}</p>
     `);
+    card.href = `image.html?image_id=${data.id}`;
+
     let cards = document.getElementById('cards');
     cards.append(card);
 }

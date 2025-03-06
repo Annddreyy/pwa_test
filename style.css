@@ -32,6 +32,13 @@ header {
     gap: 1em;
     background-color: #F69E7D;
     padding-bottom: 1em;
+    text-decoration: none;
+}
+
+.card_description {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 .card > img {
