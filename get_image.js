@@ -12,7 +12,7 @@ async function setImage() {
         let imageCard = document.getElementById('card_image');
         let description = document.getElementById('card_description');
 
-        header.innerHTML = data.title;
+        header.append(data.title);
         title.innerHTML = data.title;
         imageCard.src = 'https://www.artic.edu/iiif/2/' + data.image_id + '/full/843,/0/default.jpg';
         description.innerHTML = data.description ?? 'Нет описания';
