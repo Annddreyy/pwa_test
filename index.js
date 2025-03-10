@@ -31,6 +31,43 @@ async function generateImagesCard(image) {
 
 	let cards = document.getElementById("cards");
 	cards.append(card);
+
+	requestPermission();
 }
 
 getImages();
+
+// API уведомлений
+
+function requestPermission() {
+	Notification.requestPermission()
+		.then((permission) => {
+			sendNotification();
+			console.log('Promise resolved: ' + permission);
+		})
+		.catch((error) => {
+			console.log('Promise was rejected');
+			console.log(error);
+		});
+}
+
+function sendNotification() {
+	let title = 'Test';
+	let options = {
+	  body: 'Test body',
+	  icon: 'https://annddreyy.github.io/news-portal/static/images/bronse_horsmen.png'
+	  // Other options can go here
+	};
+	console.log('Creating new notification');
+	let notification = new Notification(title, options);
+	console.log(notification);
+}
+
+// function showPermission() {
+// 	let permission = Notification.permission;
+// 	console.log('Notification permission is ' + permission);
+// 	let p = document.getElementById('permission');
+// 	p.textContent = 'Notification permission is ' + permission;
+// }
+
+
