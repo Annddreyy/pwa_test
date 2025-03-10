@@ -37,8 +37,6 @@ async function generateImagesCard(image) {
 
 getImages();
 
-// API уведомлений
-
 function requestPermission() {
 	Notification.requestPermission()
 		.then((permission) => {
@@ -56,18 +54,10 @@ function sendNotification() {
 	let options = {
 	  body: 'Test body',
 	  icon: 'https://annddreyy.github.io/news-portal/static/images/bronse_horsmen.png'
-	  // Other options can go here
 	};
 	console.log('Creating new notification');
 	let notification = new Notification(title, options);
 	console.log(notification);
 }
-
-// function showPermission() {
-// 	let permission = Notification.permission;
-// 	console.log('Notification permission is ' + permission);
-// 	let p = document.getElementById('permission');
-// 	p.textContent = 'Notification permission is ' + permission;
-// }
 
 
