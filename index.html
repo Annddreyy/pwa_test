@@ -35,10 +35,21 @@
             window.addEventListener('load', function() {  
                 navigator.serviceWorker.register('pwabuilder-sw.js').then(
                     function(registration) {
+                        syncManager(registration);
                         console.log('ServiceWorker registration successful with scope: ', registration.scope); },
                     function(err) {
                         console.log('ServiceWorker registration failed: ', err);
                 });
+            });
+        }
+        function syncManager(registration) {
+            registration.sync.getTags().then(function(tags) {
+                if (!tags.includes('my-sync-tag')) {
+                    registration.sync.register('my-sync-tag');
+                    console.log('Sync request registered.');
+                } else {
+                    console.log('Sync tag already registered.');
+                }
             });
         }
     </script>
@@ -46,8 +57,7 @@
     <main class="container">
         <div class="cards" id="cards">
         </div>
-        
     </main>
-    <script src="index.js"></script>
+    <script src="index.js" type="module"></script>
 </body>
 </html>

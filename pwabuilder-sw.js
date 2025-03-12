@@ -1,12 +1,9 @@
-// This is the service worker with the combined offline experience (Offline page + Offline copy of pages)
-
 const CACHE = 'pwabuilder-offline-page';
 
 importScripts(
 	'https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js'
 );
 
-// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = 'offline.html';
 const offlineFallbackPage = 'offline.html';
 
 self.addEventListener('message', (event) => {
@@ -33,7 +30,7 @@ workbox.routing.registerRoute(
 );
 
 self.addEventListener('fetch', (event) => {
-  console.log('1');
+	console.log('1');
 	if (event.request.mode === 'navigate') {
 		event.respondWith(
 			(async () => {
@@ -57,10 +54,15 @@ self.addEventListener('fetch', (event) => {
 });
 
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.action === 'test-push') {
-      console.log('1');
-      self.registration.showNotification('Test Notification', {
-          body: 'Это тестовое push-уведомление без сервера!',
-      });
-  }
+	if (event.data && event.data.action === 'test-push') {
+		self.registration.showNotification('Test Notification', {
+			body: 'Это тестовое push-уведомление без сервера!',
+		});
+	}
+});
+
+self.addEventListener('sync', (event) => {
+	if (event.tag === 'database-sync') {
+		event.waitUntil();
+	}
 });

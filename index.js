@@ -1,4 +1,4 @@
-async function getImages() {
+export async function getImages() {
 	requestPermission();
 	for (let i = 129800; i < 129810; i++) {
 		let response = await fetch(
@@ -28,7 +28,8 @@ async function generateImagesCard(image) {
         <p class="description">${data.short_description ?? "Нет описания"}</p>
     `
 	);
-	//card.href = `image.html?image_id=${data.id}`;
+
+	card.href = `image.html?image_id=${data.id}`;
 
 	card.addEventListener('click', () => sendNotification());
 
@@ -51,14 +52,6 @@ function requestPermission() {
 
 function sendNotification() {
 	if (Notification.permission === "granted") {
-		// let title = 'Test';
-		// let options = {
-		// 	body: 'Test body',
-		// 	icon: 'https://annddreyy.github.io/news-portal/static/images/bronse_horsmen.png'
-		// };
-		// console.log('Creating new notification');
-		// let notification = new Notification(title, options);
-		// console.log(notification);
 		testPush();
 	}
 }
