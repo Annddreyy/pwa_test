@@ -29,10 +29,10 @@ async function generateImagesCard(image) {
 	);
 	card.href = `image.html?image_id=${data.id}`;
 
+	card.addEventListener('click', () => requestPermission());
+
 	let cards = document.getElementById("cards");
 	cards.append(card);
-
-	requestPermission();
 }
 
 getImages();
