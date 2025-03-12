@@ -28,7 +28,7 @@ async function generateImagesCard(image) {
         <p class="description">${data.short_description ?? "Нет описания"}</p>
     `
 	);
-	card.href = `image.html?image_id=${data.id}`;
+	//card.href = `image.html?image_id=${data.id}`;
 
 	card.addEventListener('click', () => sendNotification());
 
