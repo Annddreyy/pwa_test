@@ -33,6 +33,7 @@ workbox.routing.registerRoute(
 );
 
 self.addEventListener('fetch', (event) => {
+  console.log('1');
 	if (event.request.mode === 'navigate') {
 		event.respondWith(
 			(async () => {
@@ -55,11 +56,11 @@ self.addEventListener('fetch', (event) => {
 	}
 });
 
-self.addEventListener('push', (event) => {
-	event.waitUntil(
-		self.registration.showNotification('Notification Title', {
-			body: 'Notification Body Text',
-			icon: 'custom-notification-icon.png',
-		})
-	);
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.action === 'test-push') {
+      console.log('1');
+      self.registration.showNotification('Test Notification', {
+          body: 'Это тестовое push-уведомление без сервера!',
+      });
+  }
 });

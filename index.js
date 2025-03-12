@@ -51,16 +51,21 @@ function requestPermission() {
 
 function sendNotification() {
 	if (Notification.permission === "granted") {
-		let title = 'Test';
-		let options = {
-			body: 'Test body',
-			icon: 'https://annddreyy.github.io/news-portal/static/images/bronse_horsmen.png'
-		};
-		console.log('Creating new notification');
-		let notification = new Notification(title, options);
-		console.log(notification);
-		document.writeln(notification);
+		// let title = 'Test';
+		// let options = {
+		// 	body: 'Test body',
+		// 	icon: 'https://annddreyy.github.io/news-portal/static/images/bronse_horsmen.png'
+		// };
+		// console.log('Creating new notification');
+		// let notification = new Notification(title, options);
+		// console.log(notification);
+		testPush();
 	}
 }
 
+function testPush() {
+	navigator.serviceWorker.getRegistration().then((registration) => {
+		registration.active.postMessage({ action: 'test-push' });
+	});
+}
 
