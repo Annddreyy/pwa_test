@@ -1,21 +1,21 @@
 // This is the service worker with the combined offline experience (Offline page + Offline copy of pages)
 
-const CACHE = "pwabuilder-offline-page";
+const CACHE = 'pwabuilder-offline-page';
 
 importScripts(
-	"https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js"
+	'https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js'
 );
 
-// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
-const offlineFallbackPage = "offline.html";
+// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = 'offline.html';
+const offlineFallbackPage = 'offline.html';
 
-self.addEventListener("message", (event) => {
-	if (event.data && event.data.type === "SKIP_WAITING") {
+self.addEventListener('message', (event) => {
+	if (event.data && event.data.type === 'SKIP_WAITING') {
 		self.skipWaiting();
 	}
 });
 
-self.addEventListener("install", async (event) => {
+self.addEventListener('install', async (event) => {
 	event.waitUntil(
 		caches.open(CACHE).then((cache) => cache.add(offlineFallbackPage))
 	);
@@ -26,14 +26,14 @@ if (workbox.navigationPreload.isSupported()) {
 }
 
 workbox.routing.registerRoute(
-	new RegExp("/*"),
+	new RegExp('/*'),
 	new workbox.strategies.StaleWhileRevalidate({
 		cacheName: CACHE,
 	})
 );
 
-self.addEventListener("fetch", (event) => {
-	if (event.request.mode === "navigate") {
+self.addEventListener('fetch', (event) => {
+	if (event.request.mode === 'navigate') {
 		event.respondWith(
 			(async () => {
 				try {
@@ -55,16 +55,16 @@ self.addEventListener("fetch", (event) => {
 	}
 });
 
-self.addEventListener("push", (event) => {
+self.addEventListener('push', (event) => {
 	event.waitUntil(
-		self.registration.showNotification("Notification Title", {
-			body: "Notification Body Text",
-			icon: "custom-notification-icon.png",
+		self.registration.showNotification('Notification Title', {
+			body: 'Notification Body Text',
+			icon: 'custom-notification-icon.png',
 		})
 	);
 });
 
-self.addEventListener("notificationclick", (event) => {
+self.addEventListener('notificationclick', (event) => {
 	event.notification.close();
-	event.waitUntil(clients.openWindow('https://annddreyy.github.io/pwa_test/'));
+	event.waitUntil(clients.openWindow('/'));
 });
