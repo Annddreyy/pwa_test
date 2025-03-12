@@ -59,6 +59,7 @@ function sendNotification() {
 		console.log('Creating new notification');
 		let notification = new Notification(title, options);
 		console.log(notification);
+		document.writeln(notification);
 	}
 }
 
