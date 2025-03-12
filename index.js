@@ -1,4 +1,5 @@
 async function getImages() {
+	requestPermission();
 	for (let i = 129800; i < 129810; i++) {
 		let response = await fetch(
 			`https://api.artic.edu/api/v1/artworks/${i}`
@@ -29,7 +30,7 @@ async function generateImagesCard(image) {
 	);
 	card.href = `image.html?image_id=${data.id}`;
 
-	card.addEventListener('click', () => requestPermission());
+	card.addEventListener('click', () => sendNotification());
 
 	let cards = document.getElementById("cards");
 	cards.append(card);
