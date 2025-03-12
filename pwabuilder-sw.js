@@ -66,5 +66,5 @@ self.addEventListener("push", (event) => {
 
 self.addEventListener("notificationclick", (event) => {
 	event.notification.close();
-	event.waitUntil(clients.openWindow("https://yourwebsite.com"));
+	event.waitUntil(clients.openWindow('https://annddreyy.github.io/pwa_test/'));
 });
