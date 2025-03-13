@@ -67,5 +67,5 @@ function detectIOSSafari() {
 	const isIOS = /iPad|iPhone|iPod/.test(ua);
 	const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
 	
-	return isIOS && isSafari;
+	return isIOS || isSafari;
 }
