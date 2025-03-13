@@ -1,5 +1,5 @@
 export async function getImages() {
-	requestPermission();
+	//requestPermission();
 	for (let i = 129800; i < 129810; i++) {
 		let response = await fetch(
 			`https://api.artic.edu/api/v1/artworks/${i}`
