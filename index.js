@@ -1,5 +1,5 @@
 export async function getImages() {
-	requestPermission();
+	if (!detectIOSSafari()) { requestPermission(); }
 	for (let i = 129800; i < 129810; i++) {
 		let response = await fetch(
 			`https://api.artic.edu/api/v1/artworks/${i}`
@@ -62,3 +62,10 @@ function testPush() {
 	});
 }
 
+function detectIOSSafari() {
+	const ua = navigator.userAgent;
+	const isIOS = /iPad|iPhone|iPod/.test(ua);
+	const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
+	
+	return isIOS && isSafari;
+}
